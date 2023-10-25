@@ -10,16 +10,11 @@
 // getEmailDomain("a.wiersma@outlook.com") geeft outlook.com
 
 const getEmailDomain = email => {
-    const apelStaart = email.indexOf("@");
-
-    if (apelStaart === -1) {
-        return "Geen e-mail adres gevonden";
-    }
-    const emailDomain = email.slice(apelStaart + 1);
-    return emailDomain;
+    return (email.indexOf("@") === - 1) ? "Geen e-mail adres gevonden" : email.slice(email.indexOf("@") + 1);
+    // return emailDomain;
 }
 
-console.log(getEmailDomain("nizar.abak@live.nl"));
+console.log(getEmailDomain("nizar.abak@novi-education.nl"));
 
 
 /* Opdracht  2 */
@@ -62,24 +57,18 @@ console.log(typeOfEmail("nizar.abak@novi.nl"));
 // checkEmailValidity("n.eeken@novinl.") geeft false - want de punt mag niet als laatst
 // checkEmailValidity("tessmellink@novi,nl") geeft false - want er staat een komma in
 
-const checkEmailValidity = email => {
 
-    //Kijken of e-mail @ bevat
-    const emailHas = email.indexOf("@");
+// (oude code:) hieronder, daarna proberen zo beknopt mogelijk te herschrijven
+// const emailHas = email.indexOf("@");
+// //Kijken of email ',' included heeft. Dus verplicht
+// const emailInclude = email.includes(',');
+// //Kijken of de email argument eindigt met .
+// const lastCharacterisDot = email.endsWith('.');
+//
+// //Eens ternary operator gebruiken voor best practice
+// return (emailHas !== -1 && !emailInclude && !lastCharacterisDot) ? true : false;
 
-    //Kijken of email ',' included heeft. Dus verplicht
 
-    const emailInclude = email.includes(',');
-
-    //Kijken of de email argument eindigt met .
-    const lastCharacterisDot = email.endsWith('.');
-
-    if (emailHas !== -1 && !emailInclude && !lastCharacterisDot) {
-        return true;
-    } else {
-        return false;
-    }
-
-}
-
-console.log(checkEmailValidity("nizar.abak@live.nl"));
+// Super beknopte versie met verkorte arrow functie en ternary operator
+const checkEmailValidity = email => (email.indexOf("@") !== -1 && !email.includes(',') && !email.endsWith('.')) ? true : false;
+console.log(checkEmailValidity("nizar.abak@live.nl."));
